@@ -16,15 +16,12 @@ const userSchema = new Schema(
       unique: true,
       validate: [validateEmail, 'Please fill in a valid email address'],
     },
-    thoughts: {
-      type: Number,
-      required: true,
-    },
-    friends: {
-      type: Date,
-      default: Date.now,
-    },
-    thoughts: [thoughtsSchema],
+    thoughts:[
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'thought'
+       }
+  ],
     friends: [userSchema],
   },
   {
