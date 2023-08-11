@@ -6,15 +6,15 @@ const {
   deleteStudent,
   addAssignment,
   removeAssignment,
-} = require('../../controllers/studentController');
+} = require('../../controllers/userController');
 
-// /api/students
+// /api/user
 router.route('/').get(getStudents).post(createStudent);
 
-// /api/students/:studentId
+// /api/students/:userId
 router.route('/:studentId').get(getSingleStudent).delete(deleteStudent);
 
-// /api/students/:studentId/assignments
+// /api/students/user
 router.route('/:studentId/assignments').post(addAssignment);
 
 // /api/students/:studentId/assignments/:assignmentId
