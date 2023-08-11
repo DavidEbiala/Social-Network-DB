@@ -27,21 +27,16 @@ module.exports = {
   // Get a single student
   async getSingleUser(req, res) {
     try {
-      const user = await Student.findOne({ _id: req.params.userId })
-        .select('-__v')
-        .lean();
+      const user = await User.findOne({ _id: req.params.userId })
+        .select('-__v');
 
       if (!user) {
-        return res.status(404).json({ message: 'No user with that ID' });
+        return res.status(404).json({ message: 'No thought with that ID' });
       }
 
-      res.json({
-        username,
-        email: await email(req.params.studentId),
-      });
+      res.json(user);
     } catch (err) {
-      console.log(err);
-      return res.status(500).json(err);
+      res.status(500).json(err);
     }
   },
   // create a new user
@@ -73,7 +68,6 @@ module.exports = {
   async updateUser(req, res){
     try{
       const user = await User.findOneAndUpdate(
-        {name: req.params.userId},
         {name: req.params.userId},
         {new: true}
       );
